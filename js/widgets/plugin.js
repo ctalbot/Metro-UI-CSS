@@ -5,6 +5,19 @@ $.widget( "metro.widget" , {
     options: {
         someValue: null
     },
+    
+    getOptionsFromDom:function() {
+        var _self = this;
+        $.each(_self.element.data(), function(key, value){
+            if (key in _self.options) {
+                try {
+                    _self.options[key] = $.parseJSON(value);
+                } catch (e) {
+                    _self.options[key] = value;
+                }
+            }
+        });
+    },
 
     _create: function () {
         var that = this, element = this.element, o = this.options;

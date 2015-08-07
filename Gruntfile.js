@@ -43,6 +43,7 @@ module.exports = function(grunt) {
                     'js/requirements.js',
                     'js/global.js',
                     'js/widget.js',
+                    'js/metroWidget.js',
                     'js/initiator.js',
                     'js/utils/*.js',
                     'js/widgets/*.js'
@@ -151,6 +152,11 @@ module.exports = function(grunt) {
             docs_js: {
                 src: 'build/js/<%= pkg.name %>.js',
                 dest: 'docs/js/<%= pkg.name %>.js'
+            },
+            build_to_test: {
+                src: 'build/**/*',
+                dest: 'test/MetroWidget/',
+                expand:true
             }
         },
 
@@ -181,7 +187,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['js/*.js', 'js/utils/*.js', 'js/widgets/*js'],
-                tasks: ['concat', 'uglify', 'copy:docs_js']
+                tasks: ['concat', 'uglify', 'copy:docs_js', 'copy:build_to_test']
             }
         }
     });

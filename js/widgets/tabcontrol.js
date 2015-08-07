@@ -1,4 +1,4 @@
-$.widget( "metro.tabControl" , {
+$.widget( "metro.tabControl" , $.metro.widget, {
 
     version: "3.0.0",
 
@@ -17,6 +17,7 @@ $.widget( "metro.tabControl" , {
         var frames = element.children('.frames').children('div');
         var tab, target, frame;
 
+        /*
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
@@ -26,6 +27,8 @@ $.widget( "metro.tabControl" , {
                 }
             }
         });
+        */
+        this.getOptionsFromDom();
 
         if (o.saveState && element.attr('id') !== undefined && element.attr('id').trim() !== '') {
 

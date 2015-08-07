@@ -5289,6 +5289,19 @@ $.widget( "metro.widget" , {
     options: {
         someValue: null
     },
+    
+    getOptionsFromDom:function() {
+        var _self = this;
+        $.each(_self.element.data(), function(key, value){
+            if (key in _self.options) {
+                try {
+                    _self.options[key] = $.parseJSON(value);
+                } catch (e) {
+                    _self.options[key] = value;
+                }
+            }
+        });
+    },
 
     _create: function () {
         var that = this, element = this.element, o = this.options;
@@ -6869,7 +6882,7 @@ $.widget("metro.streamer", {
 });
 
 // Source: js/widgets/tabcontrol.js
-$.widget( "metro.tabControl" , {
+$.widget( "metro.tabControl" , $.metro.widget, {
 
     version: "3.0.0",
 
@@ -6888,6 +6901,7 @@ $.widget( "metro.tabControl" , {
         var frames = element.children('.frames').children('div');
         var tab, target, frame;
 
+        /*
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
@@ -6897,6 +6911,8 @@ $.widget( "metro.tabControl" , {
                 }
             }
         });
+        */
+        this.getOptionsFromDom();
 
         if (o.saveState && element.attr('id') !== undefined && element.attr('id').trim() !== '') {
 
