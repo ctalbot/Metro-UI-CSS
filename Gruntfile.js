@@ -43,7 +43,6 @@ module.exports = function(grunt) {
                     'js/requirements.js',
                     'js/global.js',
                     'js/widget.js',
-                    'js/metroWidget.js',
                     'js/initiator.js',
                     'js/utils/*.js',
                     'js/widgets/*.js'
